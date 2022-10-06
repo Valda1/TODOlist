@@ -3,18 +3,16 @@ import java.util.Scanner;
 
 public class DB {
 
-    final String dbURL = "jdbc:mysql://localhost:3306/todolist";
-    final String user = "root";
-    final String password = "accenture27";
+    Connection conn = new DBManager().getConnection();
 
     private String task;
 
-    public void addTask() {
+    public void addTask() throws SQLException {
 
         Scanner scanner = new Scanner(System.in);
         Task newTask = new Task();
 
-        try (Connection conn = DriverManager.getConnection(dbURL, user, password)) {
+        try{
 
             System.out.println("Enter the task that you want to add to your list:");
             task = scanner.nextLine().toLowerCase();
@@ -115,7 +113,7 @@ public class DB {
 
         Scanner scanner = new Scanner(System.in);
 
-        try (Connection conn = DriverManager.getConnection(dbURL, user, password)){
+        try{
 
             boolean quit = false;
             int choice = 0;
